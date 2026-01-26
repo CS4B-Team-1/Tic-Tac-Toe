@@ -27,7 +27,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button id="TOP_LEFT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="X" textFill="#bf2525" onMouseClicked="#toggleBoardButton">
+                        <Button id="TOP_LEFT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -36,7 +36,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button id="TOP_CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="O" textFill="#4126d4">
+                        <Button id="TOP_CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -45,7 +45,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <children>
-                        <Button id="TOP_RIGHT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="TOP_RIGHT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -54,7 +54,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="600.0" GridPane.rowIndex="1">
                      <children>
-                        <Button id="MID_LEFT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="MID_LEFT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -63,7 +63,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Button id="MID_CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="MID_CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -72,7 +72,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Button id="MID_RIGHT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="MID_RIGHT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -81,7 +81,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Button id="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -90,7 +90,7 @@
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button id="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
@@ -99,7 +99,7 @@
                   </Pane>
                   <Pane prefHeight="128.0" prefWidth="190.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <Button id="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+                        <Button id="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#toggleBoardButton">
                            <font>
                               <Font size="95.0" />
                            </font>
