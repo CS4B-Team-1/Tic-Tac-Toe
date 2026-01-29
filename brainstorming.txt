@@ -40,7 +40,8 @@ computeState(): int  // return the "static evaluation of the position"
 //***************************************************************************
 
 // This might be the better solution?
-// Maybe each row, column and diagonal could be evaluated.
+// Maybe each row, column and diagonal could be evaluated, since the winning conditions of Tic-Tac-Toe are
+// only along the rows, columns and diagonals; to me it follows that any move along these lines should be evaluated.
 // I think the ordering of favorable game states above might mean that you could simply
 // sum the "values" of player marks when taking this approach; such as if X is the maximizer, we could assign every
 // X the value of 1. Then that would make O the minimizer and we could assign every O
@@ -61,8 +62,10 @@ computeState(): int  // return the "static evaluation of the position"
 
 minimax() has a concept of "position", which I guess is the current configuration of the game board. "position"s are structured in a tree graph,
 and have n children, where n is the number of possible moves a player can choose from to take.
-That being said, the more Marks there are on the board, the less children are available; which is proportional to the number
+That being said, the more Marks there are on the board, the less children are available; this is proportional to the number
 of empty tiles on the board. At depth 0 (the root position), there are 9 possible moves, at depth 1, there are 8 possible moves, etc. 
+
+- Q: is 9 possible at depth 0 (9 empty tiles) or is minimax called when the human player makes a move; meaning there would be only 8 tiles to choose from (8 children) (?)
 
 BoardPosition (Class):
     depth: int (?)
@@ -70,4 +73,3 @@ BoardPosition (Class):
                     this is how we know what move the computer will make after minimax() completes, as the node it chooses will have this move associated with it.
     children: Position[] (or list)
 
-- is 9 possible at depth 0 (9 empty tiles) or is minimax called when the human player makes a move; meaning there would be only 8 tiles to choose from (8 children)
