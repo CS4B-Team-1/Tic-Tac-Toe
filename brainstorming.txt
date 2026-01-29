@@ -53,20 +53,21 @@ computeState(): int  // return the "static evaluation of the position"
 //      X| | 
 // In this example, X is the maximizer (therefore has a multiplier of +1), and O is the minimizer (and 
 //  has a multiplier of -1).
-// The first row is evaluated. Since there are two X's (for a total value of 2), and one O (for a total value of -1), and so this row gets a
+// The first row is evaluated. Since there are two X's (for a total value of 2*+1 = 2), and one O (for a total value of 1*-1 = -1), and so this row gets a
 //  value of 1. the second row is evaluated, and has a value of -1. the third row has a value of 1.
 //  The first column is evaluated. It has two X's, for a value of +2. the second row has a value of -2, and the third row has a value of +1.
 //  The top-left -> bottom-right diagonal is evaluated, and has a value of 0. the other diagonal is evaluated, and has a total value of +1.
 //  So, in total, this board state evaluation would be 1-1+1+2-2+1+0+1 = 3.
 
-minimax() has a concept of "position", which I guess is the game board? "position"s are structured in a tree graph,
+minimax() has a concept of "position", which I guess is the current configuration of the game board. "position"s are structured in a tree graph,
 and have n children, where n is the number of possible moves a player can choose from to take.
 That being said, the more Marks there are on the board, the less children are available; which is proportional to the number
 of empty tiles on the board. At depth 0 (the root position), there are 9 possible moves, at depth 1, there are 8 possible moves, etc. 
 
 BoardPosition (Class):
     depth: int (?)
-    move (?) -> this is the move that is being represented in this position (board state). i.e. placing an X at (2, 1).
+    move (?) -> this is the move that is being represented in this position (board state). i.e. placing an X at (2, 1). 
+                    this is how we know what move the computer will make after minimax() completes, as the node it chooses will have this move associated with it.
     children: Position[] (or list)
 
 - is 9 possible at depth 0 (9 empty tiles) or is minimax called when the human player makes a move; meaning there would be only 8 tiles to choose from (8 children)
