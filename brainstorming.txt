@@ -1,5 +1,5 @@
-levels of board states (with rating in parentheses):
-three in a row (horizontally, vertically, diagonally): (3)
+levels of board states (with rating/multiplier/score in parentheses):
+three in a row (horizontally, vertically, diagonally): (3) -> winning move, highest score
 two in a row (horizontally, vertically, diagonally): (2)
 two with a space in between (horizontally, vertically, diagonally): (2)
 a lone mark: (1)
