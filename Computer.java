@@ -25,7 +25,7 @@ public class Computer {
 
     public int getBestMove() {
         int bestScore = Integer.MIN_VALUE;
-        int bestMove = -1;
+        int bestMove = Integer.MIN_VALUE;
         int moveValue;
         if (this.isComputerMaximizer)
             moveValue = MAXIMIZER_VALUE;
