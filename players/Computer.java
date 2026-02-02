@@ -24,6 +24,10 @@ public class Computer {
         return moves;
     }
 
+    public boolean isMaximizer() {
+        return this.isComputerMaximizer;
+    }
+
     public int getBestMove() {
         int bestScore = Integer.MIN_VALUE;
         int bestMove = Integer.MIN_VALUE;
