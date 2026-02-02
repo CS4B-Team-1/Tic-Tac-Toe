@@ -2,7 +2,6 @@ package controller;
 import players.Computer;
 
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
