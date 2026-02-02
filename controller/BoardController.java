@@ -1,7 +1,8 @@
 package controller;
-
+import players.Computer;
 
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -184,5 +185,15 @@ public class BoardController {
         bottomCenter.setText("");
         bottomRight.setText("");
         numActiveTiles = 0;
+    }
+
+    public void computerTurn() {
+        // create the computer
+        Computer computer = new Computer(new ArrayList<>(this.boardGrid), false);
+        int move = computer.getBestMove();
+        if (move < 0)
+            return; // TODO: if a negative value was returned, something went wrong (possibly a tie state?)
+
+        // TODO: update the GUI board and boardGrid array
     }
 }
