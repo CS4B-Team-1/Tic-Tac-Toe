@@ -40,11 +40,22 @@ public class BoardController {
     private final int GRID_SIZE = 9; 
     private final String PLAYER_X = "X";
     private final String PLAYER_O = "O"; 
+    
+    public BoardController() {
+        boardGrid = new ArrayList<Integer>();
+        // Set all boardGrid to empty
+        for (int i = 0; i < GRID_SIZE; i++) {
+            boardGrid.add(0);
+        }
+    }
 
     public void toggleBoardButton(MouseEvent event) {
         MouseButton button = event.getButton();
         Button boardButton = (Button)event.getSource();
+        String buttonID = boardButton.getId();
+        int buttonMove = 0;
         if (button.compareTo(MouseButton.PRIMARY) == 0) {
+            buttonMove = -1;
             if (boardButton.getText().isEmpty()) {
                 numActiveTiles++;
             }
@@ -52,6 +63,7 @@ public class BoardController {
             boardButton.setTextFill(Color.RED);
         }
         else if (button.compareTo(MouseButton.SECONDARY) == 0){
+            buttonMove = 1;
             if (boardButton.getText().isEmpty()) {
                 numActiveTiles++;
             }
@@ -60,6 +72,41 @@ public class BoardController {
         } else {
             System.out.println("unknown button clicked");
         }
+
+        // Update boardGrid array
+        // -1 = X   0 = empty   1 = O
+        switch(buttonID) {
+            case "topLeft":
+                boardGrid.set(0, buttonMove);
+                break;
+            case "topCenter":
+                boardGrid.set(1, buttonMove);
+                break;
+            case "topRight":
+                boardGrid.set(2, buttonMove);
+                break;
+            case "middleLeft":
+                boardGrid.set(3, buttonMove);
+                break;
+            case "middleCenter":
+                boardGrid.set(4, buttonMove);
+                break;
+            case "middleRight":
+                boardGrid.set(5, buttonMove);
+                break;
+            case "bottomLeft":
+                boardGrid.set(6, buttonMove);
+                break;
+            case "bottomCenter":
+                boardGrid.set(7, buttonMove);
+                break;
+            case "bottomRight":
+                boardGrid.set(8, buttonMove);
+                break;
+            default:
+                break;
+        }
+        System.out.println(boardGrid);      // Print out boardGrid to check states
 
         String outcomeString = winnerCheck();
         if (outcomeString != null) {
@@ -184,6 +231,10 @@ public class BoardController {
         bottomCenter.setText("");
         bottomRight.setText("");
         numActiveTiles = 0;
+        // Clear boardGrid
+        for (int i = 0; i < GRID_SIZE; i++) {
+            boardGrid.set(i, 0);
+        }
     }
 
     public void computerTurn() {
