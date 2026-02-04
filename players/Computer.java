@@ -28,10 +28,12 @@ public class Computer {
         return this.isComputerMaximizer;
     }
 
-    public int getBestMove() {
+    public int getBestMove(ArrayList<Integer> boardPosition) {
+        this.boardPosition = boardPosition; // update Computer's board grid
         int bestScore = Integer.MIN_VALUE;
         int bestMove = Integer.MIN_VALUE;
         int moveValue;
+
         if (this.isComputerMaximizer)
             moveValue = MAXIMIZER_VALUE;
         else

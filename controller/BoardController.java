@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 public class BoardController {
 
     ArrayList<Integer> boardGrid;
+    Computer computerPlayer;
 
     @FXML
     private Button topLeft;
@@ -41,6 +42,7 @@ public class BoardController {
     private final int GRID_SIZE = 9; 
     private final String PLAYER_X = "X";
     private final String PLAYER_O = "O"; 
+    private final boolean IS_COMPUTER_MAXIMIZER = false;
     
     public BoardController() {
         boardGrid = new ArrayList<Integer>();
@@ -48,6 +50,7 @@ public class BoardController {
         for (int i = 0; i < GRID_SIZE; i++) {
             boardGrid.add(0);
         }
+        this.computerPlayer = new Computer(new ArrayList<>(this.boardGrid), this.IS_COMPUTER_MAXIMIZER);
     }
 
     public void toggleBoardButton(MouseEvent event) {
@@ -241,10 +244,7 @@ public class BoardController {
 
     public void computerTurn() {
         // create the computer
-        Computer computer = new Computer(new ArrayList<>(this.boardGrid), false);
-        int move = computer.getBestMove();
-        if (move < 0)
-            return; // TODO: if a negative value was returned, something went wrong (possibly a tie state?)
+        int move = this.computerPlayer.getBestMove(new ArrayList<>(this.boardGrid));
 
         // TODO: update the GUI board and boardGrid array
     }
