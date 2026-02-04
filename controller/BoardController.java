@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class BoardController {
@@ -113,6 +114,7 @@ public class BoardController {
             try { 
                 // create new window for popup
                 Stage outcomePopup = new Stage();
+                outcomePopup.initModality(Modality.APPLICATION_MODAL); // locks application, forces user to exit window before continuing
                 // create FXML loader object to load
                 FXMLLoader outcomeLoader = new FXMLLoader(getClass().getResource("..\\OutcomePopup.fxml"));
                 // load FXML onto Scene
