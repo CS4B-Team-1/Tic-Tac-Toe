@@ -55,47 +55,53 @@ public class BoardController {
     }
 
     private void updateGUI(int index) {
-            MouseEvent computerMove;
+            String computerMove = "";
+            Color color;
 
-            // Set click type based on whether computer is maximizer or minimizer
-            if (IS_COMPUTER_MAXIMIZER) {
-                // Left click for X
-                computerMove = new MouseEvent(MouseEvent.MOUSE_CLICKED,0.0,0.0,0.0,0.0,MouseButton.PRIMARY,1,
-                                                false,false,false,false,false,false,true,true,false,true,new PickResult(null,0.0,0.0));
-            } else {
-                // Right click for O
-                computerMove = new MouseEvent(MouseEvent.MOUSE_CLICKED,0.0,0.0,0.0,0.0,MouseButton.SECONDARY,1,
-                                                false,false,false,false,false,false,true,true,false,true,new PickResult(null,0.0,0.0));
+            if (this.computerPlayer.isMaximizer()){
+                computerMove = PLAYER_X;
+                color = Color.RED;
+            }else{
+                computerMove = PLAYER_X;
+                color = Color.RED;
             }
 
-            // Fire the event on the correct button based on index
             switch(index) {
                 case 0:
-                    topLeft.fireEvent(computerMove);
+                    topLeft.setText(computerMove);
+                    topLeft.setTextFill(color);
                     break;
                 case 1:
-                    topCenter.fireEvent(computerMove);
+                    topCenter.setText(computerMove);
+                    topCenter.setTextFill(color);
                     break;
                 case 2:
-                    topRight.fireEvent(computerMove);
+                    topRight.setText(computerMove);
+                    topRight.setTextFill(color);
                     break;
                 case 3:
-                    middleLeft.fireEvent(computerMove);
+                    middleLeft.setText(computerMove);
+                    middleLeft.setTextFill(color);
                     break;
                 case 4:
-                    middleCenter.fireEvent(computerMove);
+                    middleCenter.setText(computerMove);
+                    middleCenter.setTextFill(color);
                     break;
                 case 5:
-                    middleRight.fireEvent(computerMove);
+                    middleRight.setText(computerMove);
+                    middleRight.setTextFill(color);
                     break;
                 case 6:
-                    bottomLeft.fireEvent(computerMove);
+                    bottomLeft.setText(computerMove);
+                    bottomLeft.setTextFill(color);
                     break;
                 case 7:
-                    bottomCenter.fireEvent(computerMove);
+                    bottomCenter.setText(computerMove);
+                    bottomCenter.setTextFill(color);
                     break;
                 case 8:
-                    bottomRight.fireEvent(computerMove);
+                    bottomRight.setText(computerMove);
+                    bottomRight.setTextFill(color);
                     break;
                 default:
                     System.out.println("Invalid computer move index");
