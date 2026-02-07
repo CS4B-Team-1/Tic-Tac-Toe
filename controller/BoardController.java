@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -51,6 +52,54 @@ public class BoardController {
             boardGrid.add(0);
         }
         this.computerPlayer = new Computer(new ArrayList<>(this.boardGrid), this.IS_COMPUTER_MAXIMIZER);
+    }
+
+    private void updateGUI(int index) {
+            MouseEvent computerMove;
+
+            // Set click type based on whether computer is maximizer or minimizer
+            if (IS_COMPUTER_MAXIMIZER) {
+                // Left click for X
+                computerMove = new MouseEvent(MouseEvent.MOUSE_CLICKED,0.0,0.0,0.0,0.0,MouseButton.PRIMARY,1,
+                                                false,false,false,false,false,false,true,true,false,true,new PickResult(null,0.0,0.0));
+            } else {
+                // Right click for O
+                computerMove = new MouseEvent(MouseEvent.MOUSE_CLICKED,0.0,0.0,0.0,0.0,MouseButton.SECONDARY,1,
+                                                false,false,false,false,false,false,true,true,false,true,new PickResult(null,0.0,0.0));
+            }
+
+            // Fire the event on the correct button based on index
+            switch(index) {
+                case 0:
+                    topLeft.fireEvent(computerMove);
+                    break;
+                case 1:
+                    topCenter.fireEvent(computerMove);
+                    break;
+                case 2:
+                    topRight.fireEvent(computerMove);
+                    break;
+                case 3:
+                    middleLeft.fireEvent(computerMove);
+                    break;
+                case 4:
+                    middleCenter.fireEvent(computerMove);
+                    break;
+                case 5:
+                    middleRight.fireEvent(computerMove);
+                    break;
+                case 6:
+                    bottomLeft.fireEvent(computerMove);
+                    break;
+                case 7:
+                    bottomCenter.fireEvent(computerMove);
+                    break;
+                case 8:
+                    bottomRight.fireEvent(computerMove);
+                    break;
+                default:
+                    System.out.println("Invalid computer move index");
+            }
     }
 
     public void toggleBoardButton(MouseEvent event) {
