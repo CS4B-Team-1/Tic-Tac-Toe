@@ -62,8 +62,8 @@ public class BoardController {
                 computerMove = PLAYER_X;
                 color = Color.RED;
             }else{
-                computerMove = PLAYER_X;
-                color = Color.RED;
+                computerMove = PLAYER_O;
+                color = Color.BLUE;
             }
 
             switch(index) {
