@@ -8,6 +8,18 @@ public class Computer {
     private static final int MINIMIZER_VALUE = -1;
     private static final int MAXIMIZER_VALUE = 1;
 
+    //winning lines for checkWinner()
+    private static final int[][] WINNING_LINES = {
+    {0, 1, 2}, 
+    {3, 4, 5},
+    {6, 7, 8},
+    {0, 3, 6}, 
+    {1, 4, 7},
+    {2, 5, 8},
+    {0, 4, 8}, 
+    {2, 4, 6}
+};
+
     public Computer(ArrayList<Integer> boardPosition, boolean isComputerMaximizer) {
         this.boardPosition = boardPosition;
         this.isComputerMaximizer = isComputerMaximizer;
@@ -62,13 +74,29 @@ public class Computer {
     }
 
     // check the current board for a winner
-    public int checkWinner() {
-    return 0;
+public int checkWinner() {
+    for (int[] line : WINNING_LINES) {
+        int a = boardPosition.get(line[0]);
+        int b = boardPosition.get(line[1]);
+        int c = boardPosition.get(line[2]);
+
+        if (a != 0 && a == b && b == c) {
+            return a; 
+        }
+    }
+    return 0; 
 }
 
     //  check if the board is full (tie)
     public boolean isBoardFull() {
-    return false;
+        if (this.availableMoves().isEmpty())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 }
 
     public int minimax(int depth, boolean isMaximizer) {
