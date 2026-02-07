@@ -54,18 +54,25 @@ public class BoardController {
         this.computerPlayer = new Computer(new ArrayList<>(this.boardGrid), this.IS_COMPUTER_MAXIMIZER);
     }
 
+    
     private void updateGUI(int index) {
             String computerMove = "";
             Color color;
 
+            int buttonMove = 0;
+
             if (this.computerPlayer.isMaximizer()){
                 computerMove = PLAYER_X;
                 color = Color.RED;
+                buttonMove = 1;
             }else{
                 computerMove = PLAYER_O;
                 color = Color.BLUE;
+                buttonMove = -1;
+
             }
 
+            //Update Gui
             switch(index) {
                 case 0:
                     topLeft.setText(computerMove);
@@ -106,6 +113,43 @@ public class BoardController {
                 default:
                     System.out.println("Invalid computer move index");
             }
+
+            // Update Back End Board Grid
+            switch(index) {
+                case 0:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 1:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 2:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 3:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 4:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 5:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 6:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 7:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                case 8:
+                    boardGrid.set(index, buttonMove);
+                    break;
+                default:
+                    System.out.println("Invalid computer move index");
+            }
+
+            // Increment spaces used up for winnerCheck()
+            numActiveTiles++; // Not checking if its an overwrite or not.
+
     }
 
     public void toggleBoardButton(MouseEvent event) {
