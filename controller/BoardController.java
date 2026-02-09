@@ -17,6 +17,7 @@ public class BoardController {
 
     ArrayList<Integer> boardGrid;
     Computer computerPlayer;
+    boolean isOnePlayerGame = true;
 
     @FXML
     private Button topLeft;
@@ -53,6 +54,10 @@ public class BoardController {
         this.computerPlayer = new Computer(new ArrayList<>(this.boardGrid), this.IS_COMPUTER_MAXIMIZER);
     }
 
+    public void setIsOnePlayerGame(boolean isOnePlayerGame) {
+        this.isOnePlayerGame = isOnePlayerGame;
+    }
+
     
     private void updateGUI(int index) {
             String computerMove = "";
@@ -76,38 +81,47 @@ public class BoardController {
                 case 0:
                     topLeft.setText(computerMove);
                     topLeft.setTextFill(color);
+                    topLeft.setMouseTransparent(true);
                     break;
                 case 1:
                     topCenter.setText(computerMove);
                     topCenter.setTextFill(color);
+                    topCenter.setMouseTransparent(true);
                     break;
                 case 2:
                     topRight.setText(computerMove);
                     topRight.setTextFill(color);
+                    topRight.setMouseTransparent(true);
                     break;
                 case 3:
                     middleLeft.setText(computerMove);
                     middleLeft.setTextFill(color);
+                    middleLeft.setMouseTransparent(true);
                     break;
                 case 4:
                     middleCenter.setText(computerMove);
                     middleCenter.setTextFill(color);
+                    middleCenter.setMouseTransparent(true);
                     break;
                 case 5:
                     middleRight.setText(computerMove);
                     middleRight.setTextFill(color);
+                    middleRight.setMouseTransparent(true);
                     break;
                 case 6:
                     bottomLeft.setText(computerMove);
                     bottomLeft.setTextFill(color);
+                    bottomLeft.setMouseTransparent(true);
                     break;
                 case 7:
                     bottomCenter.setText(computerMove);
                     bottomCenter.setTextFill(color);
+                    bottomCenter.setMouseTransparent(true);
                     break;
                 case 8:
                     bottomRight.setText(computerMove);
                     bottomRight.setTextFill(color);
+                    bottomRight.setMouseTransparent(true);
                     break;
                 default:
                     System.out.println("Invalid computer move index");
@@ -157,7 +171,7 @@ public class BoardController {
         String buttonID = boardButton.getId();
         int buttonMove = 0;
         if (button.compareTo(MouseButton.PRIMARY) == 0) {
-            buttonMove = -1;
+            buttonMove = 1;
             if (boardButton.getText().isEmpty()) {
                 numActiveTiles++;
             }
@@ -165,7 +179,7 @@ public class BoardController {
             boardButton.setTextFill(Color.RED);
         }
         else if (button.compareTo(MouseButton.SECONDARY) == 0){
-            buttonMove = 1;
+            buttonMove = -1;
             if (boardButton.getText().isEmpty()) {
                 numActiveTiles++;
             }
@@ -209,8 +223,21 @@ public class BoardController {
                 break;
         }
         System.out.println(boardGrid);      // Print out boardGrid to check states
+        this.dispayWinnerCheck();
 
+        if (this.isOnePlayerGame){
+            this.computerTurn();
+            this.dispayWinnerCheck();
+        }
+
+        //disable the button to disallow
+        // overwriting moves (can be removed if you want to allow players to change their move before the game ends)
+        boardButton.setMouseTransparent(true);
+    }
+
+    public void dispayWinnerCheck(){
         String outcomeString = winnerCheck();
+
         if (outcomeString != null) {
             try { 
                 // create new window for popup
@@ -236,36 +263,6 @@ public class BoardController {
                 System.out.println(e.getMessage());
             }
         }
-
-        this.computerTurn();
-
-        outcomeString = winnerCheck();
-        if (outcomeString != null) {
-            try { 
-                // create new window for popup
-                Stage outcomePopup = new Stage();
-                outcomePopup.initModality(Modality.APPLICATION_MODAL); // locks application, forces user to exit window before continuing
-                // create FXML loader object to load
-                FXMLLoader outcomeLoader = new FXMLLoader(getClass().getResource("..\\OutcomePopup.fxml"));
-                // load FXML onto Scene
-                outcomePopup.setScene(new Scene(outcomeLoader.load()));
-
-                // grab Controller instance to modify Label text
-                OutcomePopupController outcomePopupController = outcomeLoader.getController();
-                // set Label text to outcome
-                outcomePopupController.setWinner(outcomeString);
-                // sets up popup to reset board when closed
-                outcomePopup.setOnHidden(hiddenEvent -> resetBoard());
-                // display popup
-                outcomePopup.show();
-                
-                return;
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
     }
 
     private String winnerCheck() {
@@ -366,6 +363,17 @@ public class BoardController {
         bottomCenter.setText("");
         bottomRight.setText("");
         numActiveTiles = 0;
+
+        topLeft.setMouseTransparent(false);
+        topCenter.setMouseTransparent(false);  
+        topRight.setMouseTransparent(false);
+        middleLeft.setMouseTransparent(false);
+        middleCenter.setMouseTransparent(false);
+        middleRight.setMouseTransparent(false);
+        bottomLeft.setMouseTransparent(false);
+        bottomCenter.setMouseTransparent(false);
+        bottomRight.setMouseTransparent(false);
+
         // Clear boardGrid
         for (int i = 0; i < GRID_SIZE; i++) {
             boardGrid.set(i, 0);

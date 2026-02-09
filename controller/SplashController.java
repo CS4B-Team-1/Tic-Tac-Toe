@@ -21,9 +21,14 @@ public class SplashController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
     public void handleTwoPlayer(Event event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("..\\TicTacToeBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("..\\TicTacToeBoard.fxml"));
+        root = loader.load();
+        BoardController boardController = loader.getController();
+        boardController.setIsOnePlayerGame(false);
+        // root = FXMLLoader.load(getClass().getResource("..\\TicTacToeBoard.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
