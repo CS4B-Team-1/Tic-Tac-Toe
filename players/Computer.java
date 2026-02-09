@@ -42,14 +42,18 @@ public class Computer {
 
     public int getBestMove(ArrayList<Integer> boardPosition) {
         this.boardPosition = boardPosition; // update Computer's board grid
-        int bestScore = Integer.MIN_VALUE;
+        int bestScore;
         int bestMove = Integer.MIN_VALUE;
         int moveValue;
 
-        if (this.isComputerMaximizer)
+        if (this.isComputerMaximizer){
             moveValue = MAXIMIZER_VALUE;
-        else
+            bestScore = Integer.MIN_VALUE;
+        }
+        else{
             moveValue = MINIMIZER_VALUE;
+            bestScore = Integer.MAX_VALUE;
+        }
 
         // for each available move, do the following:
             // make the move on the board
@@ -60,32 +64,44 @@ public class Computer {
             // set the move on the board
             this.boardPosition.set(move, moveValue);
             // call minimax with depth 0 and the maximizer/minimizer value of the Computer
-            int evaluatedScore = minimax(0, this.isComputerMaximizer); // returns a score evaluation of the move
+
+            int evaluatedScore = minimax(0, !this.isComputerMaximizer); // returns a score evaluation of the move
             // undo the move (reset the array representation of the move to "empty" -> 0)
             this.boardPosition.set(move, 0);
-            // if the score is better than the best score, update the best move and best score
-            if ((evaluatedScore * moveValue) > bestScore) {  // multiply the score by the maximizer/minimizer value here to always return a positive value for ease of evaluation
-                bestScore = evaluatedScore;
-                bestMove = move;
+
+            if(this.isComputerMaximizer){
+                // if the score is better than the best score, update the best move and best score
+                if ( evaluatedScore > bestScore) {  // multiply the score by the maximizer/minimizer value here to always return a positive value for ease of evaluation
+                    bestScore = evaluatedScore;
+                    bestMove = move;
+                }
+            } else{
+                // if the score is better than the best score, update the best move and best score
+                if ( evaluatedScore < bestScore) {  // multiply the score by the maximizer/minimizer value here to always return a positive value for ease of evaluation
+                    bestScore = evaluatedScore;
+                    bestMove = move;
+                }
             }
+
         }
+
         // returns the index of the best move to make
         return bestMove;
     }
 
     // check the current board for a winner
-public int checkWinner() {
-    for (int[] line : WINNING_LINES) {
-        int a = boardPosition.get(line[0]);
-        int b = boardPosition.get(line[1]);
-        int c = boardPosition.get(line[2]);
+    public int checkWinner() {
+        for (int[] line : WINNING_LINES) {
+            int a = boardPosition.get(line[0]);
+            int b = boardPosition.get(line[1]);
+            int c = boardPosition.get(line[2]);
 
-        if (a != 0 && a == b && b == c) {
-            return a; 
+            if (a != 0 && a == b && b == c) {
+                return a; 
+            }
         }
+        return 0; 
     }
-    return 0; 
-}
 
     //  check if the board is full (tie)
     public boolean isBoardFull() {
