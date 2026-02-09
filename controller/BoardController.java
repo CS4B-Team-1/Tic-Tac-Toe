@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.PickResult;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -231,10 +230,42 @@ public class BoardController {
                 // display popup
                 outcomePopup.show();
 
+                return; // if player wins, dont execute computer turn
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
+
+        this.computerTurn();
+
+        outcomeString = winnerCheck();
+        if (outcomeString != null) {
+            try { 
+                // create new window for popup
+                Stage outcomePopup = new Stage();
+                outcomePopup.initModality(Modality.APPLICATION_MODAL); // locks application, forces user to exit window before continuing
+                // create FXML loader object to load
+                FXMLLoader outcomeLoader = new FXMLLoader(getClass().getResource("..\\OutcomePopup.fxml"));
+                // load FXML onto Scene
+                outcomePopup.setScene(new Scene(outcomeLoader.load()));
+
+                // grab Controller instance to modify Label text
+                OutcomePopupController outcomePopupController = outcomeLoader.getController();
+                // set Label text to outcome
+                outcomePopupController.setWinner(outcomeString);
+                // sets up popup to reset board when closed
+                outcomePopup.setOnHidden(hiddenEvent -> resetBoard());
+                // display popup
+                outcomePopup.show();
+                
+                return;
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private String winnerCheck() {
@@ -346,5 +377,8 @@ public class BoardController {
         int move = this.computerPlayer.getBestMove(new ArrayList<>(this.boardGrid));
 
         // TODO: update the GUI board and boardGrid array
+
+        this.updateGUI(move);
+
     }
 }
