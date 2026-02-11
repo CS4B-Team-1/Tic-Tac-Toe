@@ -387,9 +387,6 @@ public class BoardController {
     public void computerTurn() {
         // create the computer
         int move = this.computerPlayer.getBestMove(new ArrayList<>(this.boardGrid));
-
-        // TODO: update the GUI board and boardGrid array
-
         this.updateGUI(move);
 
     }
