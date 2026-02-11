@@ -45,6 +45,7 @@ public class BoardController {
     private final String PLAYER_O = "O"; 
     private final boolean IS_COMPUTER_MAXIMIZER = false;
     
+    //Constructor
     public BoardController() {
         boardGrid = new ArrayList<Integer>();
         // Set all boardGrid to empty
@@ -58,7 +59,7 @@ public class BoardController {
         this.isOnePlayerGame = isOnePlayerGame;
     }
 
-    
+    //Updates the GUI and board after the computer has made a move.
     private void updateGUI(int index) {
             String computerMove = "";
             Color color;
@@ -165,6 +166,7 @@ public class BoardController {
 
     }
 
+    //Checks if left or right click happenes on a tile and if left click it puts an X and right click puts a O on the board for when there is 2 human players. 
     public void toggleBoardButton(MouseEvent event) {
         MouseButton button = event.getButton();
         Button boardButton = (Button)event.getSource();
@@ -235,6 +237,7 @@ public class BoardController {
         boardButton.setMouseTransparent(true);
     }
 
+    //Checks if there is a winner and if there is a winner or a tie it will diplay a popup on weather either happened and when the popup is closed it resets the board.
     public void dispayWinnerCheck(){
         String outcomeString = winnerCheck();
 
@@ -265,6 +268,7 @@ public class BoardController {
         }
     }
 
+    //Checks if there is a winner or tie game and returns null if neither is the case.
     private String winnerCheck() {
         // check all rows
         String rowsResult = checkRows();

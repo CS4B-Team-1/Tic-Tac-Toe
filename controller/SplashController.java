@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+//Changes if the board will be one player or two players
 public class SplashController {
 
     private Parent root;

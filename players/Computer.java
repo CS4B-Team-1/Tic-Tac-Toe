@@ -40,6 +40,7 @@ public class Computer {
         return this.isComputerMaximizer;
     }
 
+    //Minimax algorithm that returns the best move. 
     public int getBestMove(ArrayList<Integer> boardPosition) {
         this.boardPosition = boardPosition; // update Computer's board grid
         int bestScore;
